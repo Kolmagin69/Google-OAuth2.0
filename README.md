@@ -1,0 +1,1 @@
+# Google oauth manual settings
