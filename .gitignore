@@ -1,0 +1,21 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+.mvn/
+
+#resources
+src/main/resources/user_info_local.properties
+src/main/resources/connect_param_local.properties
