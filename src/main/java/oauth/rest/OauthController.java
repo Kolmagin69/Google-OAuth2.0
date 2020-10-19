@@ -6,19 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.HandlerAdapter;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 @Controller
-@PropertySource("classpath:connect_param.properties")
+@PropertySource("classpath:connect_param_local.properties")
 @RequestMapping("login")
 public class OauthController {
+
+    private static final Logger logger = Logger.getLogger(OauthController.class.getName());
 
     @Value("${main_link}") private String main_link;
 
@@ -36,7 +33,6 @@ public class OauthController {
 
     @Value("${client_id}") private String client_id;
 
-
     @GetMapping
     public String authorization(final Model model) {
         final StringBuilder link = new StringBuilder(main_link);
@@ -48,6 +44,7 @@ public class OauthController {
         appendKeyValue(link,"redirect_uri", redirect_uri);
         appendKeyValue(link,"client_id", client_id);
         model.addAttribute("link", link.toString());
+        logger.info("client on \"sing in\" page");
         return "oauth";
     }
 

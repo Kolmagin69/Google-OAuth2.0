@@ -16,11 +16,14 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.logging.Logger;
 
 @Controller
-@PropertySource("classpath:user_info.properties")
+@PropertySource("classpath:user_info_local.properties")
 @RequestMapping("user")
 public class UserPageController {
+
+    private static final Logger logger = Logger.getLogger(UserPageController.class.getName());
 
     @GetMapping
     public String idUser(final Model model,
@@ -47,14 +50,13 @@ public class UserPageController {
         final RestTemplate restTemplate = new RestTemplate();
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        MultiValueMap<String, String> map =
-                new LinkedMultiValueMap<String, String>() ;
+        MultiValueMap<String, String> map = new LinkedMultiValueMap() ;
         map.add("code", code);
         map.add("client_id", clientId);
         map.add("client_secret", clientSecret);
         map.add("redirect_uri", redirectUri);
         map.add("grant_type", grantType);
-
+        logger.info("post to google with code");
         HttpEntity<MultiValueMap<String, String>> entity    = new HttpEntity<>(map, headers);
         return restTemplate.exchange(urlToken, HttpMethod.POST, entity, TokenJson.class);
     }
@@ -64,6 +66,7 @@ public class UserPageController {
     private ResponseEntity<UserInfo> getUserInfo(final String idToken) throws URISyntaxException {
         final RestTemplate restTemplate = new RestTemplate();
         final URI uri = new URI(urlTokenInfo + idToken);
+        logger.info("get user info from google.com");
         return restTemplate.getForEntity(uri, UserInfo.class);
     }
 
