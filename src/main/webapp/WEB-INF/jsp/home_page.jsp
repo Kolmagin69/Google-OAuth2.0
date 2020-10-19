@@ -34,6 +34,19 @@
        .button-1:hover:before {
            transform: translate(4px, 4px);
        }
+       .button-2 {
+                  color: #232323;
+                  background: transparent;
+                  border: 1px solid #232323;
+                  position: relative;
+                  left: 800px;
+                  font-size: 14px;
+                  letter-spacing: .3em;
+                  font-family: 'Montserrat', sans-serif;
+                  padding: 17px 34px 17px 39px;
+                  transition: .2s ease-in-out;
+                  cursor: pointer;
+              }
 
         .d9 h3 {
           text-align: left;
@@ -52,6 +65,8 @@
  <p style="position: relative;left: 1000px;">${name}</p>
  <p style="position: relative;left: 1000px;"><h>${email}</p>
  </h><a class="button-1" >New game</a></h>
+ <a href= "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:8080/login"
+        class="button-2" >log out Google</a>
 
 </body>
 </html>
