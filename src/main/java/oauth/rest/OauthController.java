@@ -7,15 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.logging.FileHandler;
-import java.util.logging.Logger;
-
 @Controller
 @PropertySource("classpath:connect_param_local.properties")
 @RequestMapping("login")
 public class OauthController {
-
-    private static final Logger logger = Logger.getLogger(OauthController.class.getName());
 
     @Value("${main_link}") private String main_link;
 
@@ -44,7 +39,6 @@ public class OauthController {
         appendKeyValue(link,"redirect_uri", redirect_uri);
         appendKeyValue(link,"client_id", client_id);
         model.addAttribute("link", link.toString());
-        logger.info("client on \"sing in\" page");
         return "oauth";
     }
 
