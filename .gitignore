@@ -19,3 +19,4 @@ target/
 #resources
 src/main/resources/user_info_local.properties
 src/main/resources/connect_param_local.properties
+logging
