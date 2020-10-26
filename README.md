@@ -2,7 +2,7 @@
 # Google-OAuth2.0
 manual setting
 
-# Docker 
+### Docker 
 to create an image, use the command from project directory
 >```docker build -t google-oauth-app .```
 
